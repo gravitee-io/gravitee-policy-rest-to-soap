@@ -23,6 +23,25 @@
       "description": "'SOAPAction' HTTP header send when invoking WS",
       "type": "string"
     },
+    "contentType": {
+      "title": "Content-Type",
+      "description": "'Content-Type' HTTP header value used for invoking the WS",
+      "type": "string",
+	  "default": "text/xml",
+	  "enum" : [
+	    "text/xml",
+	    "application/soap-xml",
+	    "application/xml"
+	  ],
+	  "x-schema-form": {
+	    "type": "select",
+	    "titleMap": {
+	      "text/xml": "text/xml: Recommended to invoke a SOAP 1.1 backend services",
+	      "application/soap-xml": "application/soap-xml: Recommended to invoke a SOAP 1.2 backend services",
+	      "application/xml": "application/xml" 
+	    }
+	  }
+    },
     "charset": {
       "title": "Charset",
       "description": "This charset will be appended to the Content-Type header value",
@@ -30,6 +49,7 @@
     }
   },
   "required": [
-    "envelope"
+    "envelope",
+    "contentType"
   ]
 }
