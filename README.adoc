@@ -1,11 +1,11 @@
-= REST to SOAP Policy
+= REST to SOAP policy
 
 ifdef::env-github[]
 image:https://ci.gravitee.io/buildStatus/icon?job=gravitee-io/gravitee-policy-rest-to-soap/master["Build status", link="https://ci.gravitee.io/job/gravitee-io/job/gravitee-policy-rest-to-soap/"]
 image:https://badges.gitter.im/Join Chat.svg["Gitter", link="https://gitter.im/gravitee-io/gravitee-io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 endif::[]
 
-== Scope
+== Phase
 
 |===
 |onRequest |onResponse
@@ -17,10 +17,10 @@ endif::[]
 
 == Description
 
-REST to SOAP policy let you expose SOAP backend service as a REST API. The policy will pass the SOAP envelope message
-to the backend service as POST request. SOAP envelope supports Expression Language to provide dynamic SOAP action.
+You can use the `rest-to-soap` policy to expose SOAP backend service as a REST API. The policy will pass the SOAP envelope message
+to the backend service as a POST request. SOAP envelopes support Expression Language to provide dynamic SOAP actions.
 
-For example, a SOAP API `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?countryName=France` with the following `rest-to-soap` policy SOAP envelope content :
+For example, a SOAP API `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?countryName=France` with the following `rest-to-soap` policy SOAP envelope content:
 
 [source=xml]
 ----
@@ -34,11 +34,11 @@ For example, a SOAP API `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?countryName=Fr
 </soap:Envelope>
 ----
 
-Will give you the country ISO code of the `France` country.
+Will give you the ISO country code for `France`.
 
 == Configuration
 
-You can configure the policy with the following options :
+You can configure the policy with the following options:
 
 |===
 |Property |Required |Description |Type |Default
@@ -46,25 +46,25 @@ You can configure the policy with the following options :
 |SOAP Envelope
 |X
 |
-|SOAP envelope used to invoke WS (support Expression Language)
+|SOAP envelope used to invoke WS (supports Expression Language)
 |
 
 |SOAP Action
 |
 |
-|'SOAPAction' HTTP header send when invoking WS
+|'SOAPAction' HTTP header sent when invoking WS
 |
 
 |Charset
 |
 |
-|This charset will be appended to the Content-Type header value
+|This charset will be appended to the `Content-Type` header value
 |
 
 |Preserve Query Parameters
 |
 |
-|This option specify if the query parameters are propagated to the backend SOAP service
+|Whether the query parameters are propagated to the backend SOAP service
 |
 
 |===
