@@ -33,6 +33,12 @@
       "title": "Preserve Query Parameters",
       "description": "Define if the query parameters are propagated to the backend SOAP service",
       "type": "boolean"
+    },
+    "stripPath": {
+      "title": "Strip path",
+      "description": "Strip the path before propagating it to the backend SOAP service",
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [
