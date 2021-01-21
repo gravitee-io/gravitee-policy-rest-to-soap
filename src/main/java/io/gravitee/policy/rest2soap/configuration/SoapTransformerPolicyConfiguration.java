@@ -31,6 +31,8 @@ public class SoapTransformerPolicyConfiguration implements PolicyConfiguration {
 
     private boolean preserveQueryParams = false;
 
+    private boolean stripPath = false;
+
     public String getEnvelope() {
         return envelope;
     }
@@ -61,5 +63,14 @@ public class SoapTransformerPolicyConfiguration implements PolicyConfiguration {
 
     public void setPreserveQueryParams(boolean preserveQueryParams) {
         this.preserveQueryParams = preserveQueryParams;
+    }
+
+
+    public boolean isStripPath() {
+        return stripPath;
+    }
+
+    public void setStripPath(boolean stripPath) {
+        this.stripPath = stripPath;
     }
 }
