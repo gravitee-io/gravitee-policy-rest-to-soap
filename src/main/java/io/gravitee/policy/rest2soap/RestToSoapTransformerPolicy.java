@@ -18,18 +18,19 @@ package io.gravitee.policy.rest2soap;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpStatusCode;
 import io.gravitee.common.http.MediaType;
+import io.gravitee.common.util.LinkedMultiValueMap;
 import io.gravitee.el.exceptions.ELNullEvaluationException;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.el.EvaluableRequest;
 import io.gravitee.gateway.api.http.stream.TransformableRequestStreamBuilder;
 import io.gravitee.gateway.api.stream.ReadWriteStream;
 import io.gravitee.policy.api.PolicyChain;
 import io.gravitee.policy.api.annotations.OnRequest;
 import io.gravitee.policy.api.annotations.OnRequestContent;
 import io.gravitee.policy.rest2soap.configuration.SoapTransformerPolicyConfiguration;
+import io.gravitee.policy.rest2soap.el.EvaluableRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,11 +41,13 @@ import org.slf4j.LoggerFactory;
 public class RestToSoapTransformerPolicy {
 
     /**
-     * LOGGER
+     * Logger.
      */
     private final static Logger LOGGER = LoggerFactory.getLogger(RestToSoapTransformerPolicy.class);
 
     private final static String SOAP_ACTION_HEADER = "SOAPAction";
+
+    public final static String QUERY_PARAMS_ATTRIBUTE = ExecutionContext.ATTR_PREFIX + "rest-to-soap.query-parameters";
 
     /**
      * SOAP transformer configuration
@@ -72,6 +75,10 @@ public class RestToSoapTransformerPolicy {
         }
 
         if (!soapTransformerPolicyConfiguration.isPreserveQueryParams()) {
+            // We are removing parameters from request, but those one can be used from SOAP envelope template
+            // So let's create a copy of them for then being reused later from template engine
+            executionContext.setAttribute(QUERY_PARAMS_ATTRIBUTE, new LinkedMultiValueMap<>(request.parameters()));
+
             request.parameters().clear();
         }
 
@@ -87,9 +94,8 @@ public class RestToSoapTransformerPolicy {
 		.contentType(contentType)
                 .transform(
                         buffer -> {
-
                             executionContext.getTemplateEngine().getTemplateContext().setVariable("request",
-                                    new EvaluableRequest(request, buffer.toString()));
+                                    new EvaluableRequest(executionContext, buffer.toString()));
 
                             String soapEnvelope = executionContext.getTemplateEngine().convert(
                                     soapTransformerPolicyConfiguration.getEnvelope());
