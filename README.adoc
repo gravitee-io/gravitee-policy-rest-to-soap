@@ -36,6 +36,10 @@ For example, a SOAP API `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?countryName=Fr
 
 Will give you the ISO country code for `France`.
 
+=== Policy identifier
+
+You can enable or disable the policy with policy identifier `rest-to-soap`.
+
 == Configuration
 
 You can configure the policy with the following options:
