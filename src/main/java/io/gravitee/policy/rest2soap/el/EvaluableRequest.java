@@ -29,10 +29,10 @@ public class EvaluableRequest extends io.gravitee.gateway.api.el.EvaluableReques
 
     public EvaluableRequest(ExecutionContext context, String content) {
         super(context.request(), content);
-
-        this.parameters = context.getAttribute(RestToSoapTransformerPolicy.QUERY_PARAMS_ATTRIBUTE) != null ?
-                (MultiValueMap<String, String>) context.getAttribute(RestToSoapTransformerPolicy.QUERY_PARAMS_ATTRIBUTE) :
-                super.getParams();
+        this.parameters =
+            context.getAttribute(RestToSoapTransformerPolicy.QUERY_PARAMS_ATTRIBUTE) != null
+                ? (MultiValueMap<String, String>) context.getAttribute(RestToSoapTransformerPolicy.QUERY_PARAMS_ATTRIBUTE)
+                : super.getParams();
     }
 
     @Override

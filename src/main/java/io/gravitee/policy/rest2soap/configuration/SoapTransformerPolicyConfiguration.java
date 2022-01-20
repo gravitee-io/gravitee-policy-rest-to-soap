@@ -65,7 +65,6 @@ public class SoapTransformerPolicyConfiguration implements PolicyConfiguration {
         this.preserveQueryParams = preserveQueryParams;
     }
 
-
     public boolean isStripPath() {
         return stripPath;
     }
