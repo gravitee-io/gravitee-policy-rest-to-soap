@@ -43,11 +43,11 @@ public class RestToSoapTransformerPolicy {
     /**
      * Logger.
      */
-    private final static Logger LOGGER = LoggerFactory.getLogger(RestToSoapTransformerPolicy.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestToSoapTransformerPolicy.class);
 
-    private final static String SOAP_ACTION_HEADER = "SOAPAction";
+    private static final String SOAP_ACTION_HEADER = "SOAPAction";
 
-    public final static String QUERY_PARAMS_ATTRIBUTE = ExecutionContext.ATTR_PREFIX + "rest-to-soap.query-parameters";
+    public static final String QUERY_PARAMS_ATTRIBUTE = ExecutionContext.ATTR_PREFIX + "rest-to-soap.query-parameters";
 
     /**
      * SOAP transformer configuration
@@ -68,8 +68,10 @@ public class RestToSoapTransformerPolicy {
             executionContext.setAttribute(ExecutionContext.ATTR_REQUEST_ENDPOINT, "");
         }
 
-        if (soapTransformerPolicyConfiguration.getSoapAction() != null &&
-                !soapTransformerPolicyConfiguration.getSoapAction().trim().isEmpty()) {
+        if (
+            soapTransformerPolicyConfiguration.getSoapAction() != null &&
+            !soapTransformerPolicyConfiguration.getSoapAction().trim().isEmpty()
+        ) {
             LOGGER.debug("Add a SOAPAction header to invoke SOAP WS: {}", soapTransformerPolicyConfiguration.getSoapAction());
             request.headers().set(SOAP_ACTION_HEADER, soapTransformerPolicyConfiguration.getSoapAction());
         }
@@ -87,28 +89,31 @@ public class RestToSoapTransformerPolicy {
 
     @OnRequestContent
     public ReadWriteStream onRequestContent(Request request, ExecutionContext executionContext, PolicyChain policyChain) {
-        String charset =  soapTransformerPolicyConfiguration.getCharset() ;
-        String contentType = (charset == null || charset.isEmpty() ? MediaType.TEXT_XML : MediaType.TEXT_XML + "; charset="+charset);
+        String charset = soapTransformerPolicyConfiguration.getCharset();
+        String contentType = (charset == null || charset.isEmpty() ? MediaType.TEXT_XML : MediaType.TEXT_XML + "; charset=" + charset);
         return TransformableRequestStreamBuilder
-                .on(request)
-		.contentType(contentType)
-                .transform(
-                        buffer -> {
-                            executionContext.getTemplateEngine().getTemplateContext().setVariable("request",
-                                    new EvaluableRequest(executionContext, buffer.toString()));
+            .on(request)
+            .contentType(contentType)
+            .transform(buffer -> {
+                executionContext
+                    .getTemplateEngine()
+                    .getTemplateContext()
+                    .setVariable("request", new EvaluableRequest(executionContext, buffer.toString()));
 
-                            String soapEnvelope = executionContext.getTemplateEngine().convert(
-                                    soapTransformerPolicyConfiguration.getEnvelope());
+                String soapEnvelope = executionContext.getTemplateEngine().convert(soapTransformerPolicyConfiguration.getEnvelope());
 
-                            if (soapEnvelope == null) {
+                if (soapEnvelope == null) {
+                    policyChain.streamFailWith(
+                        io.gravitee.policy.api.PolicyResult.failure(
+                            HttpStatusCode.INTERNAL_SERVER_ERROR_500,
+                            new ELNullEvaluationException(soapTransformerPolicyConfiguration.getEnvelope()).getMessage()
+                        )
+                    );
+                    return null;
+                }
 
-                                policyChain.streamFailWith(io.gravitee.policy.api.PolicyResult.failure(
-                                        HttpStatusCode.INTERNAL_SERVER_ERROR_500,  new ELNullEvaluationException(soapTransformerPolicyConfiguration.getEnvelope()).getMessage()));
-                                return null;
-                            }
-
-                            return Buffer.buffer(soapEnvelope);
-                        }
-                ).build();
+                return Buffer.buffer(soapEnvelope);
+            })
+            .build();
     }
 }
