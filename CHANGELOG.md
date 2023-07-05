@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.13.0...1.14.0) (2023-07-05)
+
+
+### Features
+
+* add execution phase ([6fdafc0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/commit/6fdafc0ecb2b6e6f254be51ef423dd8153231119))
+
 # [1.13.0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.12.0...1.13.0) (2022-01-31)
 
 
