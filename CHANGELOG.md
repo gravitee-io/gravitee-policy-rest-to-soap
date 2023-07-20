@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.14.0...1.14.1) (2023-07-20)
+
+
+### Bug Fixes
+
+* update policy description ([5050690](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/commit/5050690ae86c3184ddbd8522135aa79b18ba7085))
+
 # [1.14.0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.13.0...1.14.0) (2023-07-05)
 
 
