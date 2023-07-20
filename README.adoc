@@ -38,6 +38,13 @@ For example, a SOAP API `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?countryName=Fr
 
 Will give you the ISO country code for `France`.
 
+== Compatibility with APIM
+
+|===
+| Plugin version | APIM version
+| 1.x            | All supported versions
+|===
+
 == Configuration
 
 You can configure the policy with the following options:
