@@ -2,11 +2,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
-  "properties" : {
-    "envelope" : {
+  "properties": {
+    "envelope": {
       "title": "SOAP Envelope",
       "description": "SOAP envelope used to invoke WS. (support EL)",
-      "type" : "string",
+      "type": "string",
       "x-schema-form": {
         "type": "codemirror",
         "codemirrorOptions": {
@@ -24,7 +24,10 @@
         "monacoEditorConfig": {
           "language": "xml"
         }
-      }
+      },
+      "examples": [
+        "<?xml version=\"1.0\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:web=\"http://www.oorsprong.org/websamples.countryinfo\"><soap:Header/><soap:Body><web:ListOfCountryNamesByName/></soap:Body></soap:Envelope>"
+      ]
     },
     "soapAction": {
       "title": "SOAP Action",
@@ -39,7 +42,8 @@
     "preserveQueryParams": {
       "title": "Preserve Query Parameters",
       "description": "Define if the query parameters are propagated to the backend SOAP service.",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "stripPath": {
       "title": "Strip path",
@@ -48,7 +52,5 @@
       "default": false
     }
   },
-  "required": [
-    "envelope"
-  ]
+  "required": ["envelope"]
 }

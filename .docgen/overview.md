@@ -1,0 +1,1 @@
+You can use the {{ title .Plugin.ID }} policy to expose SOAP backend service as a REST API. The policy will pass the SOAP envelope message to the backend service as a POST request. SOAP envelopes support Expression Language to provide dynamic SOAP actions.
