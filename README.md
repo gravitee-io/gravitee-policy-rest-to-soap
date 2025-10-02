@@ -8,7 +8,8 @@
 [![CircleCI](https://circleci.com/gh/gravitee-io/gravitee-policy-rest-to-soap.svg?style=svg)](https://circleci.com/gh/gravitee-io/gravitee-policy-rest-to-soap)
 
 ## Overview
-You can use the Rest-to-soap policy to expose SOAP backend service as a REST API. The policy will pass the SOAP envelope message to the backend service as a POST request. SOAP envelopes support Expression Language to provide dynamic SOAP actions.
+You can use the Rest-to-soap policy to expose SOAP backend service as a REST API. The policy passes the SOAP envelope message to the backend service as a POST request. SOAP envelopes support Expression Language to provide dynamic SOAP actions.
+
 
 
 ## Usage
@@ -24,10 +25,10 @@ For example, a SOAP API `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?countryName=Fr
    </soap:Body>
 </soap:Envelope>
 ```
-Will give you the ISO country code for ```France```.
+Gives you the ISO country code for ```France```.
 
 ## ⚠️ Security Warning: XML Injection Prevention
-**Important**: When using the REST-to-SOAP policy, be aware of potential XML injection vulnerabilities. User input embedded directly into SOAP envelopes without proper escaping can expose your API to security risks.
+**Important**: When you use the REST-to-SOAP policy, you must be aware of potential XML injection vulnerabilities. User input embedded directly into SOAP envelopes without proper escaping might expose your API to security risks.
 
 ### Risk Example
 For the following SOAP envelope property:
@@ -44,7 +45,7 @@ For the following SOAP envelope property:
 If user input contains XML-like content with the following url:
 `http(s)://GATEWAY_HOST:GATEWAY_PORT/soap?userId=1</web:id><web:id>2`
 
-Without escaping, this could break your SOAP structure:
+Without escaping, this might break your SOAP structure:
 ``` XML
 <soap:Envelope>
   <soap:Body>
