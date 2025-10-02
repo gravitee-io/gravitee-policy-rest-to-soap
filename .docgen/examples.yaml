@@ -1,0 +1,17 @@
+# uncomment to have default examples
+# genExamples: []
+
+genExamples:
+  - templateRef: v4-api-proxy
+    language: json
+    properties:
+      phase: request
+
+## Hand-made examples
+rawExamples:
+  - title: Proxy API on Request phase
+    templateRef: v4-api-proxy
+    language: json
+    properties:
+      phase: request
+    file: .docgen/examples/simple.json
