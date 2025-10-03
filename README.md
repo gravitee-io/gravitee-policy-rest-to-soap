@@ -196,6 +196,13 @@ Strikethrough text indicates that a version is deprecated.
 
 ## Changelog
 
+### [1.15.0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.14.1...1.15.0) (2025-10-03)
+
+
+##### Features
+
+* convert policy to use gravitee-doc-gen ([213e046](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/commit/213e04650f7a3158b72e29c124d82a10994df431))
+
 #### [1.14.1](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.14.0...1.14.1) (2023-07-20)
 
 
