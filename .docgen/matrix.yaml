@@ -1,5 +1,10 @@
 # MANDATORY
 rows:
     - data:
+          plugin: "2.x"
+          apim: "4.7.x to latest"
+          java: 21
+    - data:
           plugin: "1.x"
           apim: "All supported versions"
+          java: 11

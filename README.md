@@ -94,9 +94,10 @@ The `rest-to-soap` policy can be applied to the following API types and flow pha
 ## Compatibility matrix
 Strikethrough text indicates that a version is deprecated.
 
-| Plugin version| APIM |
-| --- | ---  |
-|1.x|All supported versions |
+| Plugin version| APIM| Java version |
+| --- | --- | ---  |
+|2.x|4.7.x to latest|21 |
+|1.x|All supported versions|11 |
 
 
 ## Configuration options
