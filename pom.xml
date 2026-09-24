@@ -39,7 +39,7 @@
         <gravitee-policy-api.version>1.10.0</gravitee-policy-api.version>
         <gravitee-common.version>1.28.0</gravitee-common.version>
 
-        <swagger-parser.version>2.1.34</swagger-parser.version>
+        <swagger-parser.version>2.1.48</swagger-parser.version>
 
         <json-schema-generator-maven-plugin.outputDirectory>${project.build.directory}/schemas</json-schema-generator-maven-plugin.outputDirectory>
 
