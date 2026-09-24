@@ -197,6 +197,19 @@ Strikethrough text indicates that a version is deprecated.
 
 ## Changelog
 
+### [2.0.0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.15.0...2.0.0) (2026-09-24)
+
+
+* chore(deps)!: move to the gravitee orb 5 and parent 23 ([7ca1d97](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/commit/7ca1d974eb45191a1408b2ebb5a4b9417e8106ca))
+
+
+##### BREAKING CHANGES
+
+* the artifact is now compiled for Java 21, up from Java 11, and
+requires a Java 21 runtime or later.
+
+https://gravitee.atlassian.net/browse/BX-403
+
 ### [1.15.0](https://github.com/gravitee-io/gravitee-policy-rest-to-soap/compare/1.14.1...1.15.0) (2025-10-03)
 
 
